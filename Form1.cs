@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,105 @@ namespace simulacroExamen
 {
     public partial class Form1 : Form
     {
+        List<Alumno> alumnos=new List<Alumno>();
+        List<Taller> talleres=new List<Taller>();
+        List<Inscripcion> inscripciones = new List<Inscripcion>();
         public Form1()
         {
             InitializeComponent();
+            LeerAlumnos();
+            LeerTalleres();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void LeerAlumnos()
+        {
+            
+                string fileName = "alumnos.txt";
+                FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                StreamReader reader = new StreamReader(stream);
+
+
+
+                while (reader.Peek() > -1)
+
+                {
+                    Alumno leeralumno = new Alumno();
+                    leeralumno.Dpi = reader.ReadLine();
+                    leeralumno.Nombre = reader.ReadLine();
+                    leeralumno.Direccion = reader.ReadLine();
+
+
+                    alumnos.Add(leeralumno);
+                    comboBoxEstudiante.Items.Add(leeralumno.Nombre);
+
+                }
+                reader.Close();
+                comboBoxEstudiante.ValueMember = "Nombre";
+                comboBoxEstudiante.SelectedValue = "Dpi";
+                comboBoxEstudiante.DataSource = alumnos;
+
+
+
+        }
+
+        private void LeerTalleres()
+        {
+
+            string fileName = "talleres.txt";
+            FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(stream);
+
+
+
+            while (reader.Peek() > -1)
+
+            {
+                Taller leertaller = new Taller();
+                leertaller.Codigo = reader.ReadLine();
+                leertaller.Nombretaller = reader.ReadLine();
+                leertaller.Costo= Convert.ToInt16(reader.ReadLine());
+                
+
+
+                talleres.Add(leertaller);
+            }
+            reader.Close();
+            comboBoxTaller.ValueMember = "Nombretaller";
+            comboBoxTaller.SelectedValue = "Codigo";
+            comboBoxTaller.DataSource= talleres;
+
+
+
+        }
+
+        private void buttonIngreso_Click(object sender, EventArgs e)
+        {
+            Inscripcion inscripcion = new Inscripcion();
+            inscripcion.Dpiestudiante = comboBoxEstudiante.SelectedValue.ToString();
+            inscripcion.Codigotaller = comboBoxTaller.SelectedValue.ToString();
+            inscripcion.Fechainscripcion = DateTime.Now;
+            inscripciones.Add(inscripcion);
+            GuardarInscripcion();
+
+        }
+
+        private void GuardarInscripcion()
+        {
+            FileStream stream = new FileStream("inscripciones.txt", FileMode.Create, FileAccess.Write);
+
+            StreamWriter writer = new StreamWriter(stream);
+
+            foreach (var item in inscripciones)
+            {
+                writer.WriteLine(item.Dpiestudiante);
+                writer.WriteLine(item.Codigotaller);
+                writer.WriteLine(item.Fechainscripcion);
+            }
+            writer.Close();
         }
     }
 }
