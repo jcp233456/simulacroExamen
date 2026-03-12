@@ -137,5 +137,13 @@ namespace simulacroExamen
             reportes = reportes.OrderBy(c => c.Taller).ToList();
             dataGridView1.DataSource=reportes;
         }
+
+        private void buttonCantidad_Click(object sender, EventArgs e)
+        {
+            int total = inscripciones.Count;
+            MessageBox.Show("Total de estudiantes inscritos" + total);
+
+
+        }
     }
 }

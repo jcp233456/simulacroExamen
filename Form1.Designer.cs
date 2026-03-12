@@ -40,7 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxEstudiante = new System.Windows.Forms.ComboBox();
             this.buttonOrdenar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonCantidad = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -70,7 +70,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.buttonCantidad);
             this.tabPage2.Controls.Add(this.buttonOrdenar);
             this.tabPage2.Controls.Add(this.buttonMostrar);
             this.tabPage2.Controls.Add(this.dataGridView1);
@@ -162,22 +162,23 @@
             // 
             // buttonOrdenar
             // 
-            this.buttonOrdenar.Location = new System.Drawing.Point(360, 245);
+            this.buttonOrdenar.Location = new System.Drawing.Point(325, 245);
             this.buttonOrdenar.Name = "buttonOrdenar";
-            this.buttonOrdenar.Size = new System.Drawing.Size(141, 35);
+            this.buttonOrdenar.Size = new System.Drawing.Size(219, 35);
             this.buttonOrdenar.TabIndex = 2;
             this.buttonOrdenar.Text = "Ordenar alafabeticamente";
             this.buttonOrdenar.UseVisualStyleBackColor = true;
             this.buttonOrdenar.Click += new System.EventHandler(this.buttonOrdenar_Click);
             // 
-            // button1
+            // buttonCantidad
             // 
-            this.button1.Location = new System.Drawing.Point(633, 245);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 30);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonCantidad.Location = new System.Drawing.Point(633, 245);
+            this.buttonCantidad.Name = "buttonCantidad";
+            this.buttonCantidad.Size = new System.Drawing.Size(148, 30);
+            this.buttonCantidad.TabIndex = 3;
+            this.buttonCantidad.Text = "Cantidad estudiantes";
+            this.buttonCantidad.UseVisualStyleBackColor = true;
+            this.buttonCantidad.Click += new System.EventHandler(this.buttonCantidad_Click);
             // 
             // Form1
             // 
@@ -211,7 +212,7 @@
         private System.Windows.Forms.Button buttonMostrar;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button buttonOrdenar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonCantidad;
     }
 }
 
