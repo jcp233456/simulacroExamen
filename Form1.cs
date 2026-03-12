@@ -131,5 +131,11 @@ namespace simulacroExamen
             }
             dataGridView1.DataSource = reportes;
         }
+
+        private void buttonOrdenar_Click(object sender, EventArgs e)
+        {
+            reportes = reportes.OrderBy(c => c.Taller).ToList();
+            dataGridView1.DataSource=reportes;
+        }
     }
 }
