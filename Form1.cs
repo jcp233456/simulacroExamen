@@ -16,15 +16,19 @@ namespace simulacroExamen
         List<Alumno> alumnos=new List<Alumno>();
         List<Taller> talleres=new List<Taller>();
         List<Inscripcion> inscripciones = new List<Inscripcion>();
+        List<Reporte>reportes=new List<Reporte>();
         public Form1()
         {
             InitializeComponent();
             LeerAlumnos();
             LeerTalleres();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LeerAlumnos();
+            LeerTalleres();
 
         }
         private void LeerAlumnos()
@@ -46,7 +50,7 @@ namespace simulacroExamen
 
 
                     alumnos.Add(leeralumno);
-                    comboBoxEstudiante.Items.Add(leeralumno.Nombre);
+                    
 
                 }
                 reader.Close();
@@ -112,6 +116,20 @@ namespace simulacroExamen
                 writer.WriteLine(item.Fechainscripcion);
             }
             writer.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            Reporte reporte = new Reporte();
+            foreach (var item in inscripciones)
+            {
+                reporte.Nombre = comboBoxEstudiante.SelectedValue.ToString();
+                reporte.Taller= comboBoxTaller.SelectedValue.ToString();
+                reportes.Add(reporte);
+
+            }
+            dataGridView1.DataSource = reportes;
         }
     }
 }
